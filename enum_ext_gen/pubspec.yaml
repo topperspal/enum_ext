@@ -1,6 +1,6 @@
 name: enum_ext_gen
-description: enum_ext generator⚙️
-version: 1.0.0
+description: This is enum_ext generator. This makes life pretty easy by generating some useful methods and properties on enum.
+version: 1.1.0
 homepage: https://github.com/topperspal/enum_ext
 
 environment:
@@ -10,7 +10,7 @@ dependencies:
   analyzer: ^3.4.1
   build: ^2.2.1
   chalk: ^1.2.0
-  enum_ext: ^1.0.0
+  enum_ext: ^1.1.0
   source_gen: ^1.2.1
 
 dev_dependencies:

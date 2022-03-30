@@ -10,6 +10,7 @@ String generateCustomPropertiesGetters(String enumName, List<FieldElement> field
   final cases = <String>[];
 
   for (var f in fields) {
+    // ignore: prefer_typing_uninitialized_variables
     var value;
 
     if (_customValueAnnChecker.hasAnnotationOfExact(f)) {

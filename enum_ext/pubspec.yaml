@@ -1,15 +1,14 @@
 name: enum_ext
 description: Lets make enums super useful by adding some useful extension methods. Say good bye to switch-case and if-else blocks.
-version: 1.1.0-pre0
+version: 1.1.0
 homepage: https://github.com/topperspal/enum_ext
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
 
-# dependencies:
-#   path: ^1.8.0
+dependencies:
+  recase: ^4.0.0
+
 dev_dependencies:
   lints: ^1.0.0
   test: ^1.20.2
-dependencies:
-  recase: ^4.0.0

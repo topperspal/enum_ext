@@ -6,107 +6,107 @@ part of 'enums.dart';
 // EnumExtGenerator
 // **************************************************************************
 
-extension GenderExt on Gender {
+extension HttpResponseExt on HttpResponse {
   dynamic get value {
     switch (this) {
-      case Gender.male:
-        return "m";
-      case Gender.female:
-        return "f";
-      case Gender.other:
-        return "o";
+      case HttpResponse.ok:
+        return 200;
+      case HttpResponse.notFound:
+        return 404;
+      case HttpResponse.internalServerError:
+        return 500;
     }
   }
 
   void when({
-    required void Function(Gender e) male,
-    required void Function(Gender e) female,
-    required void Function(Gender e) other,
+    required void Function(HttpResponse e) ok,
+    required void Function(HttpResponse e) notFound,
+    required void Function(HttpResponse e) internalServerError,
   }) {
     switch (this) {
-      case Gender.male:
-        return male(this);
-      case Gender.female:
-        return female(this);
-      case Gender.other:
-        return other(this);
+      case HttpResponse.ok:
+        return ok(this);
+      case HttpResponse.notFound:
+        return notFound(this);
+      case HttpResponse.internalServerError:
+        return internalServerError(this);
     }
   }
 
   void mayBeWhen<T>({
-    void Function(Gender e)? male,
-    void Function(Gender e)? female,
-    void Function(Gender e)? other,
-    required void Function(Gender e) orElse,
+    void Function(HttpResponse e)? ok,
+    void Function(HttpResponse e)? notFound,
+    void Function(HttpResponse e)? internalServerError,
+    required void Function(HttpResponse e) orElse,
   }) {
     switch (this) {
-      case Gender.male:
-        return male == null ? orElse(this) : male(this);
-      case Gender.female:
-        return female == null ? orElse(this) : female(this);
-      case Gender.other:
-        return other == null ? orElse(this) : other(this);
+      case HttpResponse.ok:
+        return ok == null ? orElse(this) : ok(this);
+      case HttpResponse.notFound:
+        return notFound == null ? orElse(this) : notFound(this);
+      case HttpResponse.internalServerError:
+        return internalServerError == null ? orElse(this) : internalServerError(this);
     }
   }
 
   void onlyWhen<T>({
-    void Function(Gender e)? male,
-    void Function(Gender e)? female,
-    void Function(Gender e)? other,
+    void Function(HttpResponse e)? ok,
+    void Function(HttpResponse e)? notFound,
+    void Function(HttpResponse e)? internalServerError,
   }) {
     switch (this) {
-      case Gender.male:
-        return male?.call(this);
-      case Gender.female:
-        return female?.call(this);
-      case Gender.other:
-        return other?.call(this);
+      case HttpResponse.ok:
+        return ok?.call(this);
+      case HttpResponse.notFound:
+        return notFound?.call(this);
+      case HttpResponse.internalServerError:
+        return internalServerError?.call(this);
     }
   }
 
   T map<T>({
-    required T Function(Gender e) male,
-    required T Function(Gender e) female,
-    required T Function(Gender e) other,
+    required T Function(HttpResponse e) ok,
+    required T Function(HttpResponse e) notFound,
+    required T Function(HttpResponse e) internalServerError,
   }) {
     switch (this) {
-      case Gender.male:
-        return male(this);
-      case Gender.female:
-        return female(this);
-      case Gender.other:
-        return other(this);
+      case HttpResponse.ok:
+        return ok(this);
+      case HttpResponse.notFound:
+        return notFound(this);
+      case HttpResponse.internalServerError:
+        return internalServerError(this);
     }
   }
 
   T mapSimply<T>({
-    required T male,
-    required T female,
-    required T other,
+    required T ok,
+    required T notFound,
+    required T internalServerError,
   }) {
     switch (this) {
-      case Gender.male:
-        return male;
-      case Gender.female:
-        return female;
-      case Gender.other:
-        return other;
+      case HttpResponse.ok:
+        return ok;
+      case HttpResponse.notFound:
+        return notFound;
+      case HttpResponse.internalServerError:
+        return internalServerError;
     }
   }
 
   T mayBeMap<T>({
-    T Function(Gender e)? male,
-    T Function(Gender e)? female,
-    T Function(Gender e)? other,
-    required T Function(Gender e) orElse,
+    T Function(HttpResponse e)? ok,
+    T Function(HttpResponse e)? notFound,
+    T Function(HttpResponse e)? internalServerError,
+    required T Function(HttpResponse e) orElse,
   }) {
     switch (this) {
-      case Gender.male:
-        return male == null ? orElse(this) : male(this);
-      case Gender.female:
-        return female == null ? orElse(this) : female(this);
-      case Gender.other:
-        return other == null ? orElse(this) : other(this);
+      case HttpResponse.ok:
+        return ok == null ? orElse(this) : ok(this);
+      case HttpResponse.notFound:
+        return notFound == null ? orElse(this) : notFound(this);
+      case HttpResponse.internalServerError:
+        return internalServerError == null ? orElse(this) : internalServerError(this);
     }
   }
 }

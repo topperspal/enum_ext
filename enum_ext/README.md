@@ -1,4 +1,4 @@
-Lets make enums 🚀**SUPER** by adding some useful extension methods.<br />
+Lets make enums 🚀 by adding some useful extension methods.<br />
 Say good bye to **switch-case** and **if-else** blocks.
 
 <br />Inspired by [freezed](https://pub.dev/packages/freezed)
@@ -13,6 +13,7 @@ Say good bye to **switch-case** and **if-else** blocks.
   - mapSimply
   - mayBeMap
 - ### Generate custom extension value
+- ### Change case of enum names
 
 ## Getting started
 
@@ -33,7 +34,7 @@ dev_dependencies:
 Add the part directive in the file
 
 ```dart
-part 'my_enums.g.dart';
+part 'file_name.g.dart';
 ```
 
 ## Extension methods
@@ -42,25 +43,22 @@ In order to generate extension methods, simply annotate the enum with `@EnumExt(
 
 ```dart
 @EnumExt()
-enum Gender {
-  male,
-  female,
-  other
-}
+enum HttpResponse { ok, notFound, internalServerError }
 ```
 
 ⚙️ Now generate the code using build_runner.
-<br />Dart only -
+<br />
+**Dart only -**
 
-```
+```dart
 dart pub run build_runner build
 // OR
 dart pub run build_runner watch
 ```
 
-Flutter -
+**Flutter -**
 
-```
+```dart
 flutter pub run build_runner build
 // OR
 flutter pub run build_runner watch
@@ -69,84 +67,106 @@ flutter pub run build_runner watch
 This will generate all these extension methods for you
 
 ```dart
-final gender = Gender.male;
+  final response = HttpResponse.internalServerError;
 
-gender.when(
-    male: (e) {
-      // Do some actions only if the gender is male
+  response.when(
+    ok: (e) {
+      // Do some actions only if the response is HttpResponse.ok
     },
-    female: (e) {
-      // Do some actions only if the gender is female
+    notFound: (e) {
+      // Do some actions only if the response is HttpResponse.notFound
     },
-    other: (e) {
-      // Do some actions only if the gender is other
+    internalServerError: (e) {
+      // Do some actions only if the response is HttpResponse.internalServerError
     },
   );
 
-  gender.mayBeWhen(
-    male: (e) {
-      // Do some actions only if the gender is male
+  response.mayBeWhen(
+    ok: (e) {
+      // Do some actions only if the response is HttpResponse.ok
     },
     orElse: (e) {
-      // Do some actions only if the gender is not male
+      // Do some actions only if the response is something other than HttpResponse.ok
     },
   );
 
-  gender.onlyWhen(
-    male: (e) {
-      // Do some actions only if the gender is male
+  response.onlyWhen(
+    ok: (e) {
+      // Do some actions only if the response is HttpResponse.ok
     },
   );
 
-  final value = gender.map(
-    male: (e) => "Male value",
-    female: (e) => "Female value",
-    other: (e) => "Other value",
+  final value = response.map(
+    ok: (e) => "Some value based on HttpResponse.ok",
+    notFound: (e) => "Some value based on HttpResponse.notFound",
+    internalServerError: (e) => "Some value based on HttpResponse.internalServerError",
   );
 
-  final skinType = gender.mapSimply(
-    male: "Hard",
-    female: "Soft",
-    other: "MayBeSoft",
-  );
-
-  final color = gender.mayBeMap(
-    male: (e) => Colors.white,
-    orElse: (e) => Colors.pink,
+  final skinType = response.mapSimply(
+    ok: "Some value based on HttpResponse.ok",
+    notFound: "Some value based on HttpResponse.notFound",
+    internalServerError: "Some value based on HttpResponse.internalServerError",
   );
 ```
 
-> Note :- **when()**, `onlyWhen()`, `mayBeWhen()`** methods used when do just want \***to perform some task**\* based on specific enum property, whereas **map**, `mayBeMap()`, `mapSimply()` methods are used to \***return a value\*\*\* based on the enum.
+> Note :- **when()**, `onlyWhen()`, `mayBeWhen()` methods used when do just want **to perform some task** based on specific enum properties, whereas **map()**, `mayBeMap()`, `mapSimply()` methods are used to **return a value** based on the enum.
 
 ## Extension value:-
 
 In order to generate extension value, annotate enum properties with `@EnumExtValue(...)`
-<br />⚠️ Any enum propery that is not annotated with `@EnumExtValue(...)` will simply return `null`
-<br />⚠️ Supported values for `@EnumExtValue(...)` are **String, int, double, List, Map, Set** and **Symbol**. Any other vaue will be replaced by `null`
+<br />⚠️Note:- Any enum propery that is not annotated with `@EnumExtValue(...)` will simply return `null`
+<br />⚠️Note:- Supported values for `@EnumExtValue(...)` are **String, int, double, List, Map, Set** and **Symbol**. Any other vaue will be replaced by `null`
 
-Lets add some extension values to the **Gender** enum
+Lets add some extension values to the `HttpResponse` enum
 
 ```dart
 @EnumExt()
-enum Gender {
-  @EnumExtValue("m")
-  male,
-  @EnumExtValue("f")
-  female,
-  @EnumExtValue("o")
-  other
+enum HttpResponse {
+  @EnumExtValue(200)
+  ok,
+  @EnumExtValue(404)
+  notFound,
+  @EnumExtValue(500)
+  internalServerError,
 }
 ```
 
 This will generate a getter extension named `value` on the enum.
 
 ```dart
-  final gender = Gender.male;
+  final response = HttpResponse.internalServerError;
 
-  print(gender); // Gender.male
-  print(gender.index); // 0
-  print(gender.name); // male
-  print(gender.value); // m <-- 🔥 Extension
+  print(response); // HttpResponse.internalServerError
+  print(response.index); // 2
+  print(response.name); // internalServerError
+  print(response.value); // 500 <-- 🔥 Extension
+```
+
+### Change case of enum names
+
+Import the following
+
+```dart
+import 'package:enum_ext/enum_ext.dart';
+```
+
+```dart
+enum HttpResponse { ok, notFound, internalServerError }
+
+void main() {
+  final response = HttpResponse.internalServerError;
+
+  print(response.camelCase); // internalServerError
+  print(response.constantCase); // INTERNAL_SERVER_ERROR
+  print(response.dotCase); // internal.server.error
+  print(response.headerCase); // Internal-Server-Error
+  print(response.paramCase); // internal-server-error
+  print(response.pascalCase); // InternalServerError
+  print(response.pathCase); // internal/server/error
+  print(response.sentenceCase); // Internal server error
+  print(response.snakeCase); // internal_server_error
+  print(response.titleCase); // Internal Server Error
+}
 ```
 
 ## Please hit a like👍 if this package made your life 🚀

@@ -3,11 +3,11 @@ import 'package:enum_ext/enum_ext.dart';
 part 'enums.g.dart';
 
 @EnumExt()
-enum Gender {
-  @EnumExtValue("m")
-  male,
-  @EnumExtValue("f")
-  female,
-  @EnumExtValue("o")
-  other,
+enum HttpResponse {
+  @EnumExtValue(200)
+  ok,
+  @EnumExtValue(404)
+  notFound,
+  @EnumExtValue(500)
+  internalServerError,
 }

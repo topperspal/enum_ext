@@ -1,6 +1,6 @@
 name: enum_ext
-description: Add some useful extensions to dart enum
-version: 1.0.0
+description: Lets make enums super useful by adding some useful extension methods. Say good bye to switch-case and if-else blocks.
+version: 1.1.0-pre0
 homepage: https://github.com/topperspal/enum_ext
 
 environment:
@@ -8,6 +8,8 @@ environment:
 
 # dependencies:
 #   path: ^1.8.0
-
 dev_dependencies:
   lints: ^1.0.0
+  test: ^1.20.2
+dependencies:
+  recase: ^4.0.0

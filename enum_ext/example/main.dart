@@ -2,65 +2,71 @@ import 'package:enum_ext/enum_ext.dart';
 
 part 'main.g.dart';
 
-void main(List<String> arguments) {
-  final gender = Gender.male;
-
-  print(gender); // Gender.male
-  print(gender.index); // 0
-  print(gender.name); // male
-  print(gender.value); // m
-
-  gender.when(
-    male: (e) {
-      // Do some actions only if the gender is male
-    },
-    female: (e) {
-      // Do some actions only if the gender is female
-    },
-    other: (e) {
-      // Do some actions only if the gender is other
-    },
-  );
-
-  gender.mayBeWhen(
-    male: (e) {
-      // Do some actions only if the gender is male
-    },
-    orElse: (e) {
-      // Do some actions only if the gender is not male
-    },
-  );
-
-  gender.onlyWhen(
-    male: (e) {
-      // Do some actions only if the gender is male
-    },
-  );
-
-  final value = gender.map(
-    male: (e) => "Male value",
-    female: (e) => "Female value",
-    other: (e) => "Other value",
-  );
-
-  final skinType = gender.mapSimply(
-    male: "Hard",
-    female: "Soft",
-    other: "MayBeSoft",
-  );
-
-  // final color = gender.mayBeMap(
-  //   male: (e) => Colors.white,
-  //   orElse: (e) => Colors.pink,
-  // );
+@EnumExt()
+enum HttpResponse {
+  @EnumExtValue(200)
+  ok,
+  @EnumExtValue(404)
+  notFound,
+  @EnumExtValue(500)
+  internalServerError,
 }
 
-@EnumExt()
-enum Gender {
-  @EnumExtValue("m")
-  male,
-  @EnumExtValue("f")
-  female,
-  @EnumExtValue("o")
-  other
+void main(List<String> arguments) {
+  final response = HttpResponse.internalServerError;
+
+  print(response); // HttpResponse.ok
+  print(response.name); // ok
+  print(response.index); // 0
+  print(response.value); // 200
+
+  response.when(
+    ok: (e) {
+      // Do some actions only if the response is HttpResponse.ok
+    },
+    notFound: (e) {
+      // Do some actions only if the response is HttpResponse.notFound
+    },
+    internalServerError: (e) {
+      // Do some actions only if the response is HttpResponse.internalServerError
+    },
+  );
+
+  response.mayBeWhen(
+    ok: (e) {
+      // Do some actions only if the response is HttpResponse.ok
+    },
+    orElse: (e) {
+      // Do some actions only if the response is something other than HttpResponse.ok
+    },
+  );
+
+  response.onlyWhen(
+    ok: (e) {
+      // Do some actions only if the response is HttpResponse.ok
+    },
+  );
+
+  final value = response.map(
+    ok: (e) => "Some value based on HttpResponse.ok",
+    notFound: (e) => "Some value based on HttpResponse.notFound",
+    internalServerError: (e) => "Some value based on HttpResponse.internalServerError",
+  );
+
+  final skinType = response.mapSimply(
+    ok: "Some value based on HttpResponse.ok",
+    notFound: "Some value based on HttpResponse.notFound",
+    internalServerError: "Some value based on HttpResponse.internalServerError",
+  );
+
+  print(response.camelCase); // internalServerError
+  print(response.constantCase); // INTERNAL_SERVER_ERROR
+  print(response.dotCase); // internal.server.error
+  print(response.headerCase); // Internal-Server-Error
+  print(response.paramCase); // internal-server-error
+  print(response.pascalCase); // InternalServerError
+  print(response.pathCase); // internal/server/error
+  print(response.sentenceCase); // Internal server error
+  print(response.snakeCase); // internal_server_error
+  print(response.titleCase); // Internal Server Error
 }

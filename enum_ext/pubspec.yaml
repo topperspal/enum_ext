@@ -1,0 +1,13 @@
+name: enum_ext
+description: Add some useful extensions to dart enum
+version: 1.0.0
+homepage: https://github.com/topperspal/enum_ext
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  lints: ^1.0.0

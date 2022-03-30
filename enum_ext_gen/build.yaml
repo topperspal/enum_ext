@@ -1,0 +1,8 @@
+builders:
+  enum_ext_gen:
+    import: "package:enum_ext_gen/enum_ext_gen.dart"
+    builder_factories: ["enumExtGenerator"]
+    build_extensions: { ".dart": [".g.dart"] }
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]

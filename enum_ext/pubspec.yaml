@@ -1,6 +1,6 @@
 name: enum_ext
 description: Lets make enums super useful by adding some useful extension methods. Say good bye to switch-case and if-else blocks.
-version: 1.2.0
+version: 1.3.1
 homepage: https://github.com/topperspal/enum_ext
 
 environment:

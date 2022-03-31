@@ -21,6 +21,7 @@ class EnumExtGenerator extends GeneratorForAnnotation<EnumExt> {
     final StringBuffer buffer = StringBuffer("extension ${enumName}Ext on $enumName {");
 
     buffer.writeln(generateCustomPropertiesGetters(enumName!, fields));
+    buffer.writeln(generateTitleGetter(enumName, fields));
     if (shouldGenerateValueCheckers) {
       buffer.writeln(generateValueCheckingGetters(enumName, fields));
     }

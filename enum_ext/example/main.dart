@@ -61,14 +61,5 @@ void main(List<String> arguments) {
     internalServerError: "Some value based on HttpResponse.internalServerError",
   );
 
-  print(response.camelCase); // internalServerError
-  print(response.constantCase); // INTERNAL_SERVER_ERROR
-  print(response.dotCase); // internal.server.error
-  print(response.headerCase); // Internal-Server-Error
-  print(response.paramCase); // internal-server-error
-  print(response.pascalCase); // InternalServerError
-  print(response.pathCase); // internal/server/error
-  print(response.sentenceCase); // Internal server error
-  print(response.snakeCase); // internal_server_error
-  print(response.titleCase); // Internal Server Error
+  print(response.title); // Internal Server Error
 }

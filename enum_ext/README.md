@@ -14,7 +14,7 @@ Say good bye to **switch-case** and **if-else** blocks.
 
 - ### Generate Value Checking Getters
 - ### Generate Custom Extension Value
-- ### Change Case Of Enum Names
+- ### Title case of enum name
 ## Getting started
 
 Add following dependencies -
@@ -154,30 +154,17 @@ This will generate a getter extension named `value` on the enum.
   print(response.value); // 500 <-- 🔥 Extension
 ```
 
-### Change case of enum names
-
-Import the following
-
-```dart
-import 'package:enum_ext/enum_ext.dart';
-```
+# Title case of enum name
+It also generate `title` getter extension in order to get **Title Case** of enum property name.
 
 ```dart
+@EnumExt()
 enum HttpResponse { ok, notFound, internalServerError }
 
 void main() {
   final response = HttpResponse.internalServerError;
 
-  print(response.camelCase); // internalServerError
-  print(response.constantCase); // INTERNAL_SERVER_ERROR
-  print(response.dotCase); // internal.server.error
-  print(response.headerCase); // Internal-Server-Error
-  print(response.paramCase); // internal-server-error
-  print(response.pascalCase); // InternalServerError
-  print(response.pathCase); // internal/server/error
-  print(response.sentenceCase); // Internal server error
-  print(response.snakeCase); // internal_server_error
-  print(response.titleCase); // Internal Server Error
+  print(response.title); // Internal Server Error
 }
 ```
 

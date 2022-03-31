@@ -144,17 +144,17 @@ packages:
   enum_ext:
     dependency: "direct main"
     description:
-      name: enum_ext
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
+      path: "../enum_ext"
+      relative: true
+    source: path
+    version: "1.3.1"
   enum_ext_gen:
     dependency: "direct dev"
     description:
-      name: enum_ext_gen
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
+      path: "../enum_ext_gen"
+      relative: true
+    source: path
+    version: "1.3.1"
   file:
     dependency: transitive
     description:

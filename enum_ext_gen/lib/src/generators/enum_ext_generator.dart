@@ -10,6 +10,8 @@ class EnumExtGenerator extends GeneratorForAnnotation<EnumExt> {
   generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
     final enumName = element.name;
 
+    final shouldGenerateValueCheckers = annotation.read("conditionalGetters").boolValue;
+
     final e = element as ClassElement;
 
     final fields = e.fields; // remove values
@@ -19,6 +21,9 @@ class EnumExtGenerator extends GeneratorForAnnotation<EnumExt> {
     final StringBuffer buffer = StringBuffer("extension ${enumName}Ext on $enumName {");
 
     buffer.writeln(generateCustomPropertiesGetters(enumName!, fields));
+    if (shouldGenerateValueCheckers) {
+      buffer.writeln(generateValueCheckingGetters(enumName, fields));
+    }
 
     buffer.writeln(generateWhenMethod(enumName, fieldNames));
     buffer.writeln(generateMayBeWhenMethod(enumName, fieldNames));

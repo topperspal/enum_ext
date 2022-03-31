@@ -2,7 +2,7 @@ import 'package:enum_ext/enum_ext.dart';
 
 part 'enums.g.dart';
 
-@EnumExt()
+@EnumExt(conditionalGetters: false)
 enum HttpResponse {
   @EnumExtValue(200)
   ok,

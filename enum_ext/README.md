@@ -4,17 +4,17 @@ Say good bye to **switch-case** and **if-else** blocks.
 <br />Inspired by [freezed](https://pub.dev/packages/freezed)
 
 ## Features
-
-- ### Generate some useful methods
+- ### Generate Some Useful Methods
   - when
   - mayBeWhen
   - onlyWhen
   - map
   - mapSimply
   - mayBeMap
-- ### Generate custom extension value
-- ### Change case of enum names
 
+- ### Generate Value Checking Getters
+- ### Generate Custom Extension Value
+- ### Change Case Of Enum Names
 ## Getting started
 
 Add following dependencies -
@@ -37,7 +37,7 @@ Add the part directive in the file
 part 'file_name.g.dart';
 ```
 
-## Extension methods
+# Extension methods
 
 In order to generate extension methods, simply annotate the enum with `@EnumExt()`
 
@@ -111,7 +111,19 @@ This will generate all these extension methods for you
 
 > Note :- **when()**, `onlyWhen()`, `mayBeWhen()` methods used when do just want **to perform some task** based on specific enum properties, whereas **map()**, `mayBeMap()`, `mapSimply()` methods are used to **return a value** based on the enum.
 
-## Extension value:-
+# Value Checking Getters
+It will also generate value checking getter like 
+```dart
+response.isOk // response == Response.ok
+response.isNotOk // response != Response.ok
+```
+
+If you do not want to generate **value checking getters**, you can set `conditionalGetters: false` like this
+```dart
+EnumExt(conditionalGetters: false)
+```
+
+# Extension value
 
 In order to generate extension value, annotate enum properties with `@EnumExtValue(...)`
 <br />⚠️Note:- Any enum propery that is not annotated with `@EnumExtValue(...)` will simply return `null`

@@ -34,6 +34,17 @@ String generateCustomPropertiesGetters(String enumName, List<FieldElement> field
 """;
 }
 
+String generateValueCheckingGetters(String enumName, List<FieldElement> fields) {
+  final buffer = StringBuffer();
+
+  for (var f in fields) {
+    buffer.writeln("bool get is${f.name[0].toUpperCase()}${f.name.substring(1)} => this == $enumName.${f.name};");
+    buffer.writeln("bool get isNot${f.name[0].toUpperCase()}${f.name.substring(1)} => this != $enumName.${f.name};");
+  }
+
+  return buffer.toString();
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                    When                                    */
 /* -------------------------------------------------------------------------- */

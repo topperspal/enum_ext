@@ -50,7 +50,8 @@ void main(List<String> arguments) {
   final value = response.map(
     ok: (e) => "Some value based on HttpResponse.ok",
     notFound: (e) => "Some value based on HttpResponse.notFound",
-    internalServerError: (e) => "Some value based on HttpResponse.internalServerError",
+    internalServerError: (e) =>
+        "Some value based on HttpResponse.internalServerError",
   );
 
   final skinType = response.mapSimply(

@@ -7,10 +7,12 @@ import 'package:source_gen/source_gen.dart';
 
 class EnumExtGenerator extends GeneratorForAnnotation<EnumExt> {
   @override
-  generateForAnnotatedElement(Element element, ConstantReader annotation, BuildStep buildStep) {
+  generateForAnnotatedElement(
+      Element element, ConstantReader annotation, BuildStep buildStep) {
     final enumName = element.name;
 
-    final shouldGenerateValueCheckers = annotation.read("conditionalGetters").boolValue;
+    final shouldGenerateValueCheckers =
+        annotation.read("conditionalGetters").boolValue;
 
     final e = element as ClassElement;
 
@@ -18,7 +20,8 @@ class EnumExtGenerator extends GeneratorForAnnotation<EnumExt> {
     fields.removeLast();
     final fieldNames = fields.map((e) => e.name).toList();
 
-    final StringBuffer buffer = StringBuffer("extension ${enumName}Ext on $enumName {");
+    final StringBuffer buffer =
+        StringBuffer("extension ${enumName}Ext on $enumName {");
 
     buffer.writeln(generateCustomPropertiesGetters(enumName!, fields));
     buffer.writeln(generateTitleGetter(enumName, fields));

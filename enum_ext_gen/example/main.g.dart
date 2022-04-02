@@ -91,7 +91,9 @@ extension HttpResponseExt on HttpResponse {
       case HttpResponse.notFound:
         return notFound == null ? orElse(this) : notFound(this);
       case HttpResponse.internalServerError:
-        return internalServerError == null ? orElse(this) : internalServerError(this);
+        return internalServerError == null
+            ? orElse(this)
+            : internalServerError(this);
     }
   }
 
@@ -198,7 +200,9 @@ extension HttpResponseExt on HttpResponse {
       case HttpResponse.notFound:
         return notFound == null ? orElse(this) : notFound(this);
       case HttpResponse.internalServerError:
-        return internalServerError == null ? orElse(this) : internalServerError(this);
+        return internalServerError == null
+            ? orElse(this)
+            : internalServerError(this);
     }
   }
 }

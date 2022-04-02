@@ -5,4 +5,5 @@ import 'package:source_gen/source_gen.dart';
 
 import 'src/generators/enum_ext_generator.dart';
 
-Builder enumExtGenerator(BuilderOptions options) => SharedPartBuilder([EnumExtGenerator()], 'enumExtGenerator');
+Builder enumExtGenerator(BuilderOptions options) =>
+    SharedPartBuilder([EnumExtGenerator()], 'enumExtGenerator');

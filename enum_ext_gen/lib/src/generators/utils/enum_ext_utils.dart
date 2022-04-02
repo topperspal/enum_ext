@@ -7,7 +7,8 @@ import 'package:source_gen/source_gen.dart';
 
 final _customValueAnnChecker = const TypeChecker.fromRuntime(EnumExtValue);
 
-String generateCustomPropertiesGetters(String enumName, List<FieldElement> fields) {
+String generateCustomPropertiesGetters(
+    String enumName, List<FieldElement> fields) {
   final cases = <String>[];
 
   for (var f in fields) {
@@ -15,7 +16,8 @@ String generateCustomPropertiesGetters(String enumName, List<FieldElement> field
     var value;
 
     if (_customValueAnnChecker.hasAnnotationOfExact(f)) {
-      DartObject? obj = _customValueAnnChecker.firstAnnotationOfExact(f)!.getField('value');
+      DartObject? obj =
+          _customValueAnnChecker.firstAnnotationOfExact(f)!.getField('value');
 
       value = extractValue(obj);
     }
@@ -35,12 +37,18 @@ String generateCustomPropertiesGetters(String enumName, List<FieldElement> field
 """;
 }
 
+/// Generates `title` getter on enum
+///
+/// ```dart
+/// enum HttpResponse { ok, notFound, internalServerError }
+/// ...
+/// print(HttpResponse.ok); // Ok
+/// print(HttpResponse.notFound); // Not Found
+/// print(HttpResponse.internalServerError); // Internal Server Error
 String generateTitleGetter(String enumName, List<FieldElement> fields) {
   final cases = <String>[];
 
   for (var f in fields) {
-    dynamic value;
-
     cases.add("""
       case $enumName.${f.name}:
         return "${ReCase(f.name).titleCase}";
@@ -62,12 +70,24 @@ String generateTitleGetter(String enumName, List<FieldElement> fields) {
 """;
 }
 
-String generateValueCheckingGetters(String enumName, List<FieldElement> fields) {
+/// Generates value checking getters like `is...` and `isNot...`
+///
+/// ```dart
+/// enum HttpResponse { ok, notFound, internalServerError }
+/// ...
+/// final response = HttpResponse.ok;
+/// if(response.isOk) {
+///   print("Success");
+/// }
+String generateValueCheckingGetters(
+    String enumName, List<FieldElement> fields) {
   final buffer = StringBuffer();
 
   for (var f in fields) {
-    buffer.writeln("bool get is${f.name[0].toUpperCase()}${f.name.substring(1)} => this == $enumName.${f.name};");
-    buffer.writeln("bool get isNot${f.name[0].toUpperCase()}${f.name.substring(1)} => this != $enumName.${f.name};");
+    buffer.writeln(
+        "bool get is${f.name[0].toUpperCase()}${f.name.substring(1)} => this == $enumName.${f.name};");
+    buffer.writeln(
+        "bool get isNot${f.name[0].toUpperCase()}${f.name.substring(1)} => this != $enumName.${f.name};");
   }
 
   return buffer.toString();
@@ -76,6 +96,20 @@ String generateValueCheckingGetters(String enumName, List<FieldElement> fields) 
 /* -------------------------------------------------------------------------- */
 /*                                    When                                    */
 /* -------------------------------------------------------------------------- */
+/// Generates `when()` extension method
+///
+/// ```dart
+/// enum HttpResponse { ok, notFound, internalServerError }
+/// ...
+/// final response = HttpResponse.ok;
+/// if(response.isOk) {
+///   print("Success");
+/// }
+/// response.when(
+///   ok: () {},
+///   notFound: () {},
+///   internalServerError: () {},
+/// )
 String generateWhenMethod(String enumName, List<String> fields) {
   final parameters = <String>[];
   final cases = <String>[];

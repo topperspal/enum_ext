@@ -1,7 +1,13 @@
+## 1.3.2
+
+Removed unused dependency `recase`.
+
 ## 1.3.1
+
 **Breaking** - Now `title` getter will be generated, you do not need to `import package:enum_ext/enum_ext.dart` package anymore in order to use this. Instead import the file containing enum.
 
 ## 1.3.0
+
 **Breaking** - Removed all cases (`snackCase, camelCase, dotCase, headerCase` etc.) in order to make enum more robust and clean
 
 Now it generate `title` getter extension in order to get title case of enum property name

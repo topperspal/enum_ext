@@ -20,7 +20,7 @@ void main(List<String> arguments) {
   print(response); // HttpResponse.ok
   print(response.name); // ok
   print(response.index); // 0
-  print(response.value); // 200
+  print(response.extValue); // 200
 
   response.when(
     ok: (e) {
@@ -52,7 +52,8 @@ void main(List<String> arguments) {
   final value = response.map(
     ok: (e) => "Some value based on HttpResponse.ok",
     notFound: (e) => "Some value based on HttpResponse.notFound",
-    internalServerError: (e) => "Some value based on HttpResponse.internalServerError",
+    internalServerError: (e) =>
+        "Some value based on HttpResponse.internalServerError",
   );
 
   final skinType = response.mapSimply(

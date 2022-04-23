@@ -40,6 +40,8 @@ class EnumExtGenerator extends GeneratorForAnnotation<EnumExt> {
 
     buffer.writeln("}");
 
+    buffer.write(generateEnumByCustomPropertySelector(enumName, fields));
+
     return buffer.toString();
   }
 }

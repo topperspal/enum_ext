@@ -1,4 +1,11 @@
 
+## 1.4.0
+
+- **Breaking** - `value` getter is replaced with `extValue`
+- **Features Added** - 
+    - Now the eunm property can be accessed with `byExtValue()` like `byName()` from values.
+- **Updated** all dependencies
+
 ## 1.3.2
 
 - Updated dependency `enum_ext` from `1.3.1` to `1.3.2`

@@ -102,7 +102,7 @@ This will generate all these extension methods for you
     internalServerError: (e) => "Some value based on HttpResponse.internalServerError",
   );
 
-  final skinType = response.mapSimply(
+  final something = response.mapSimply(
     ok: "Some value based on HttpResponse.ok",
     notFound: "Some value based on HttpResponse.notFound",
     internalServerError: "Some value based on HttpResponse.internalServerError",
@@ -143,7 +143,7 @@ enum HttpResponse {
 }
 ```
 
-This will generate a getter extension named `value` on the enum.
+This will generate a getter extension named `extValue` on the enum.
 
 ```dart
   final response = HttpResponse.internalServerError;
@@ -151,7 +151,11 @@ This will generate a getter extension named `value` on the enum.
   print(response); // HttpResponse.internalServerError
   print(response.index); // 2
   print(response.name); // internalServerError
-  print(response.value); // 500 <-- 🔥 Extension
+  print(response.extValue); // 500 <-- 🔥 Extension
+```
+and
+```dart
+  HttpResponse.values.byExtValue(500);// returns HttpResponse.internalServerError
 ```
 
 # Title case of enum name

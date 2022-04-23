@@ -1,3 +1,9 @@
+## 1.4.0
+
+- **Breaking** - `value` getter is replaced with `extValue`
+- **Features Added** - 
+    - Now the eunm property can be accessed with `byExtValue()` like `byName()` from values.
+
 ## 1.3.2
 
 Removed unused dependency `recase`.

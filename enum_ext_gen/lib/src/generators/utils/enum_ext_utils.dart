@@ -29,11 +29,43 @@ String generateCustomPropertiesGetters(
   }
 
   return """
-  dynamic get value {
+  dynamic get extValue {
     switch(this) {
       ${cases.join()}
     }
   }
+""";
+}
+
+String generateEnumByCustomPropertySelector(
+    String enumName, List<FieldElement> fields) {
+  final cases = <String>[];
+
+  for (var f in fields) {
+    // ignore: prefer_typing_uninitialized_variables
+
+    if (_customValueAnnChecker.hasAnnotationOfExact(f)) {
+      DartObject? obj =
+          _customValueAnnChecker.firstAnnotationOfExact(f)!.getField('value');
+      var value = extractValue(obj);
+
+      cases.add("""
+      case $value:
+        return $enumName.${f.name};
+    """);
+    }
+  }
+
+  return """
+extension ${enumName}ArrayExt on List<$enumName> {
+  $enumName byExtValue(dynamic value) {
+    switch(value) {
+      ${cases.join()}
+      default:
+        throw ArgumentError.value(value, "extValue", "No enum value with that extension value");
+    }
+  }
+}
 """;
 }
 
